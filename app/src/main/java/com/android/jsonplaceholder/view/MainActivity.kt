@@ -1,7 +1,8 @@
-package com.android.jsonplaceholder
+package com.android.jsonplaceholder.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.android.jsonplaceholder.R
 
 class MainActivity : AppCompatActivity() {
 
