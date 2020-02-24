@@ -1,10 +1,10 @@
 package com.android.jsonplaceholder.repository
 
-import com.android.jsonplaceholder.post.model.Album
-import com.android.jsonplaceholder.post.model.Comment
-import com.android.jsonplaceholder.post.model.Photo
-import com.android.jsonplaceholder.post.model.Post
-import com.android.jsonplaceholder.user.model.User
+import com.android.jsonplaceholder.model.Album
+import com.android.jsonplaceholder.model.Comment
+import com.android.jsonplaceholder.model.Photo
+import com.android.jsonplaceholder.model.Post
+import com.android.jsonplaceholder.model.User
 
 interface JsonPlaceholderDataContract {
 

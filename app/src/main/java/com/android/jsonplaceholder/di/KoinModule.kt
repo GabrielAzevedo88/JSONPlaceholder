@@ -1,7 +1,11 @@
 package com.android.jsonplaceholder.di
 
-import JsonPlaceholderRepository
+import com.android.jsonplaceholder.adapter.PostListAdapter
+import com.android.jsonplaceholder.internal.AppRouter
 import com.android.jsonplaceholder.repository.JsonPlaceholderApi
+import com.android.jsonplaceholder.repository.JsonPlaceholderRepository
+import com.android.jsonplaceholder.viewmodel.PostListViewModel
+import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.core.context.loadKoinModules
 import org.koin.dsl.module
 
@@ -18,7 +22,11 @@ private val repositoryModule = module {
 }
 
 private val viewModelModule = module {
-    //TODO: Add viewModels
+    viewModel { PostListViewModel(repository = get()) }
+}
+
+private val adapterModule = module {
+    factory { (router: AppRouter) -> PostListAdapter(router = router) }
 }
 
 fun loadModules() {
@@ -26,7 +34,8 @@ fun loadModules() {
         listOf(
             serviceModule,
             repositoryModule,
-            viewModelModule
+            viewModelModule,
+            adapterModule
         )
     )
 }

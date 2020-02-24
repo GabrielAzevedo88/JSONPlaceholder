@@ -1,4 +1,4 @@
-package com.android.jsonplaceholder.user.model
+package com.android.jsonplaceholder.model
 
 data class Address(
     val city: String,

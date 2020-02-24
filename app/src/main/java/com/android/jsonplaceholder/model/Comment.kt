@@ -1,4 +1,4 @@
-package com.android.jsonplaceholder.post.model
+package com.android.jsonplaceholder.model
 
 data class Comment(
     val body: String,
