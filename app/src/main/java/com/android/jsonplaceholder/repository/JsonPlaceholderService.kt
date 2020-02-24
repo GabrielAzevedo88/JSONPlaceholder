@@ -32,5 +32,4 @@ interface JsonPlaceholderService {
 
     @DELETE("posts/{id}")
     suspend fun deletePost(@Path("id") id: Int): Response<Boolean>
-
 }

@@ -6,6 +6,9 @@ import androidx.lifecycle.ViewModel
 import com.android.jsonplaceholder.internal.State
 
 open class BaseViewModel : ViewModel() {
+    val mainLoaderVisibility = MutableLiveData<Int>().apply {
+        value = View.VISIBLE
+    }
     val deletingLoaderVisibility = MutableLiveData<Int>().apply {
         value = View.GONE
     }
@@ -21,18 +24,22 @@ open class BaseViewModel : ViewModel() {
         when (state) {
             State.SUCCESS -> {
                 contendVisibility.value = getVisibility(true)
+                mainLoaderVisibility.value = getVisibility(false)
                 deletingLoaderVisibility.value = getVisibility(false)
             }
             State.ERROR -> {
                 contendVisibility.value = getVisibility(false)
+                mainLoaderVisibility.value = getVisibility(false)
                 deletingLoaderVisibility.value = getVisibility(false)
             }
             State.LOADING -> {
                 contendVisibility.value = getVisibility(false)
+                mainLoaderVisibility.value = getVisibility(true)
                 deletingLoaderVisibility.value = getVisibility(false)
             }
             State.DELETING -> {
                 contendVisibility.value = getVisibility(false)
+                mainLoaderVisibility.value = getVisibility(false)
                 deletingLoaderVisibility.value = getVisibility(true)
             }
         }

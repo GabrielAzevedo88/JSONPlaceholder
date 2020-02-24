@@ -1,7 +1,7 @@
 package com.android.jsonplaceholder.repository
 
-import retrofit2.Response
 import java.io.IOException
+import retrofit2.Response
 
 abstract class SafeRequest {
 
@@ -22,5 +22,4 @@ abstract class SafeRequest {
             throw IOException(response.code().toString())
         }
     }
-
 }

@@ -9,7 +9,7 @@ import com.android.jsonplaceholder.model.Post
 class PostListViewHolder(private val binding: ViewDataBinding, private val removeItemAction: (Int) -> Unit) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun binding(post: Post){
+    fun binding(post: Post) {
         binding.apply {
             setVariable(BR.post, post)
             setVariable(BR.onDeleteClick, View.OnClickListener {

@@ -32,6 +32,7 @@ class PostListActivity : AppCompatActivity() {
         setupBinding()
         setupObservable()
         setupRecycler()
+        setupSwipeRefresh()
         getData()
     }
 
@@ -65,8 +66,14 @@ class PostListActivity : AppCompatActivity() {
         }
     }
 
-    private fun getData() {
-        viewModel.getData()
+    private fun setupSwipeRefresh() {
+        aPostList_srRefresh.setOnRefreshListener {
+            getData(true)
+            aPostList_srRefresh.isRefreshing = false
+        }
     }
 
+    private fun getData(isRefresh: Boolean = false) {
+        viewModel.getData(isRefresh)
+    }
 }

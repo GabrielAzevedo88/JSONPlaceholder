@@ -43,5 +43,4 @@ class PostListAdapter(val router: AppRouter, private val removeItemAction: (Int)
         postList.removeAt(itemIndex)
         notifyItemRemoved(itemIndex)
     }
-
 }
