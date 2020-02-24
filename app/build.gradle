@@ -64,6 +64,7 @@ dependencies {
     implementation "com.airbnb.android:lottie:$versions.lottie"
     implementation "com.google.android.material:material:$versions.material"
     implementation "androidx.cardview:cardview:$versions.cardview"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$versions.swiperefresh"
 
     //test
     testImplementation "junit:junit:$versions.junit"

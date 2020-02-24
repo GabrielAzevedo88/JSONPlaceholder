@@ -14,8 +14,10 @@ class PostListViewModel(val repository: JsonPlaceholderRepository) : BaseViewMod
     val postList: MutableLiveData<List<Post>> = MutableLiveData()
     val successDeletedId: MutableLiveData<Int> = MutableLiveData()
 
-    fun getData() {
-        setState(State.LOADING)
+    fun getData(isRefresh: Boolean = false) {
+        takeIf { isRefresh }?.run {
+            setState(State.REFRESH_LOADING)
+        }?: setState(State.LOADING)
 
         viewModelScope.launch {
             try {
