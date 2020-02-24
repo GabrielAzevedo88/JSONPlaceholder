@@ -76,5 +76,4 @@ class PostListActivity : AppCompatActivity() {
     private fun getData(isRefresh: Boolean = false) {
         viewModel.getData(isRefresh)
     }
-
 }

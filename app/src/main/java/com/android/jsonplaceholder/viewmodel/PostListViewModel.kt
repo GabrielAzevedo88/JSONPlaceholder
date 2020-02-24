@@ -17,7 +17,7 @@ class PostListViewModel(val repository: JsonPlaceholderRepository) : BaseViewMod
     fun getData(isRefresh: Boolean = false) {
         takeIf { isRefresh }?.run {
             setState(State.REFRESH_LOADING)
-        }?: setState(State.LOADING)
+        } ?: setState(State.LOADING)
 
         viewModelScope.launch {
             try {
@@ -44,5 +44,4 @@ class PostListViewModel(val repository: JsonPlaceholderRepository) : BaseViewMod
             }
         }
     }
-
 }

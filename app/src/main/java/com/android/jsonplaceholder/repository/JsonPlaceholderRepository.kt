@@ -1,6 +1,5 @@
 package com.android.jsonplaceholder.repository
 
-
 import com.android.jsonplaceholder.model.Album
 import com.android.jsonplaceholder.model.Comment
 import com.android.jsonplaceholder.model.Photo

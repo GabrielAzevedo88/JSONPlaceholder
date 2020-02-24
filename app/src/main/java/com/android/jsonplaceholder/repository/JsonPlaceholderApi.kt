@@ -1,10 +1,10 @@
 package com.android.jsonplaceholder.repository
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import java.util.concurrent.TimeUnit
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import java.util.concurrent.TimeUnit
 
 class JsonPlaceholderApi {
     companion object {
@@ -25,6 +25,5 @@ class JsonPlaceholderApi {
             .client(getHttpClient().build())
             .build()
             .create(JsonPlaceholderService::class.java)
-
     }
 }
