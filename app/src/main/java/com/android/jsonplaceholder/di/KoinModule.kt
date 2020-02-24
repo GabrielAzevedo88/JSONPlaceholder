@@ -26,7 +26,12 @@ private val viewModelModule = module {
 }
 
 private val adapterModule = module {
-    factory { (router: AppRouter) -> PostListAdapter(router = router) }
+    factory { (router: AppRouter, action: (Int) -> Unit) ->
+        PostListAdapter(
+            router = router,
+            removeItemAction = action
+        )
+    }
 }
 
 fun loadModules() {

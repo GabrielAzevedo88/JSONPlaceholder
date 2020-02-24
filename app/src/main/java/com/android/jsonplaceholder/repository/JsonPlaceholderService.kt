@@ -6,6 +6,7 @@ import com.android.jsonplaceholder.model.Photo
 import com.android.jsonplaceholder.model.Post
 import com.android.jsonplaceholder.model.User
 import retrofit2.Response
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -28,5 +29,8 @@ interface JsonPlaceholderService {
 
     @GET("albums/{albumId}/photos")
     suspend fun getPhotos(@Path("albumId") albumId: Int): Response<List<Photo>>
+
+    @DELETE("posts/{id}")
+    suspend fun deletePost(@Path("id") id: Int): Response<Boolean>
 
 }

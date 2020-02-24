@@ -10,7 +10,7 @@ class JsonPlaceholderApi {
     companion object {
 
         private const val BASE_URL = "https://jsonplaceholder.typicode.com/"
-        private const val TIMEOUT: Long = 15
+        private const val TIMEOUT: Long = 5
 
         private fun getHttpClient(): OkHttpClient.Builder = OkHttpClient.Builder()
             .connectTimeout(TIMEOUT, TimeUnit.SECONDS)

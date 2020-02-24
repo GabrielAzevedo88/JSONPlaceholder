@@ -34,4 +34,8 @@ class JsonPlaceholderRepository(private val service: JsonPlaceholderService) :
     override suspend fun getPhotos(albumId: Int): List<Photo> = apiRequest {
         service.getPhotos(albumId)
     }
+
+    override suspend fun deletePost(id: Int): Boolean = apiRequest {
+        service.deletePost(id)
+    }
 }
