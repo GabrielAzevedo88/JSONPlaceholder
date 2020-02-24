@@ -20,4 +20,6 @@ interface JsonPlaceholderDataContract {
 
     suspend fun getPhotos(albumId: Int): List<Photo>
 
+    suspend fun deletePost(id: Int) : Boolean
+
 }

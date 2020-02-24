@@ -20,7 +20,8 @@ class PostListActivity : AppCompatActivity() {
     private val viewModel: PostListViewModel by viewModel()
     private val listAdapter: PostListAdapter by inject {
         parametersOf(
-            AppRouter(this@PostListActivity)
+            AppRouter(this@PostListActivity),
+            { id: Int -> viewModel.deletePost(id) }
         )
     }
 
@@ -37,14 +38,21 @@ class PostListActivity : AppCompatActivity() {
     private fun setupBinding() {
         bindingContentView(R.layout.activity_main).run {
             setVariable(BR.viewModel, viewModel)
+            lifecycleOwner = this@PostListActivity
         }
     }
 
     private fun setupObservable() {
         viewModel.run {
             observe(postList) {
-                it?.let {
-                    listAdapter.setPosts(it)
+                it?.run {
+                    listAdapter.setPosts(this)
+                }
+            }
+
+            observe(successDeletedId) {
+                it?.run {
+                    listAdapter.removeItem(this)
                 }
             }
         }

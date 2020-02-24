@@ -9,9 +9,10 @@ import com.android.jsonplaceholder.R
 import com.android.jsonplaceholder.internal.AppRouter
 import com.android.jsonplaceholder.model.Post
 
-class PostListAdapter(val router: AppRouter) : RecyclerView.Adapter<PostListViewHolder>() {
+class PostListAdapter(val router: AppRouter, private val removeItemAction: (Int) -> Unit) :
+    RecyclerView.Adapter<PostListViewHolder>() {
 
-    private var postList: List<Post> = ArrayList()
+    private var postList: MutableList<Post> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostListViewHolder =
         PostListViewHolder(
@@ -20,7 +21,8 @@ class PostListAdapter(val router: AppRouter) : RecyclerView.Adapter<PostListView
                 R.layout.layout_post_list_item,
                 parent,
                 false
-            )
+            ),
+            removeItemAction
         )
 
     override fun onBindViewHolder(holder: PostListViewHolder, position: Int) {
@@ -32,8 +34,14 @@ class PostListAdapter(val router: AppRouter) : RecyclerView.Adapter<PostListView
     override fun getItemCount(): Int = postList.count()
 
     fun setPosts(posts: List<Post>) {
-        this.postList = posts
+        this.postList = posts.toMutableList()
         notifyDataSetChanged()
+    }
+
+    fun removeItem(id: Int) {
+        val itemIndex = postList.indexOfFirst { post -> post.id == id }
+        postList.removeAt(itemIndex)
+        notifyItemRemoved(itemIndex)
     }
 
 }
