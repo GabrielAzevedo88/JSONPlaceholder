@@ -1,4 +1,4 @@
-package com.android.jsonplaceholder.post.model
+package com.android.jsonplaceholder.model
 
 data class Album(
     val userId: Int,
