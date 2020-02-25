@@ -1,5 +1,5 @@
 # JSONPlaceholder
-Simple app with JSONPlaceholder services
+Simple app with JSONPlaceholder services http://jsonplaceholder.typicode.com/
 
 # Project architecture
 - MVVM
