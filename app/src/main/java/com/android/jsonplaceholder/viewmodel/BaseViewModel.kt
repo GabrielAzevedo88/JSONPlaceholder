@@ -15,6 +15,9 @@ open class BaseViewModel : ViewModel() {
     val contendVisibility = MutableLiveData<Int>().apply {
         value = View.VISIBLE
     }
+    val errorVisibility = MutableLiveData<Int>().apply {
+        value = View.GONE
+    }
 
     private fun getVisibility(show: Boolean): Int = takeIf { show }?.run {
         View.VISIBLE
@@ -41,6 +44,14 @@ open class BaseViewModel : ViewModel() {
             when (state) {
                 State.DELETING -> getVisibility(true)
                 State.SUCCESS, State.ERROR, State.LOADING, State.REFRESH_LOADING -> getVisibility(
+                    false
+                )
+            }
+
+        errorVisibility.value =
+            when (state) {
+                State.ERROR -> getVisibility(true)
+                State.SUCCESS, State.DELETING, State.LOADING, State.REFRESH_LOADING -> getVisibility(
                     false
                 )
             }

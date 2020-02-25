@@ -17,6 +17,10 @@
             name="userName"
             type="String" />
 
+        <variable
+            name="contentVisibility"
+            type="Integer" />
+
     </data>
 
     <com.google.android.material.appbar.AppBarLayout
@@ -55,7 +59,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@android:color/white"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="@{contentVisibility}">
 
                     <TextView
                         android:id="@+id/aPostDetail_tvTitle"
@@ -108,6 +113,7 @@
             android:background="@color/colorAccent"
             android:gravity="center"
             android:padding="8dp"
+            android:visibility="@{contentVisibility}"
             android:text="@string/comments"
             android:textColor="@android:color/white"
             android:textSize="16sp"

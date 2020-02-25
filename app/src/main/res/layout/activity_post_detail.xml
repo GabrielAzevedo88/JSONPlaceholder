@@ -20,7 +20,7 @@
             layout="@layout/content_post_detail_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="@{viewModel.contendVisibility.intValue()}"
+            app:contentVisibility="@{viewModel.contendVisibility.intValue()}"
             app:body="@{viewModel.post.body}"
             app:title="@{viewModel.post.title}"
             app:userName="@{viewModel.user.name}" />
@@ -56,6 +56,14 @@
                 tools:listitem="@layout/layout_post_comment_item" />
 
         </androidx.core.widget.NestedScrollView>
+
+        <include
+            layout="@layout/layout_error"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{viewModel.errorVisibility.intValue()}"
+            app:onRefreshClick="@{() -> viewModel.getData()}"
+            tools:visibility="gone" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

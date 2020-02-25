@@ -2,4 +2,7 @@
     <string name="app_name">JSONPlaceholder</string>
     <string name="see_more">See more</string>
     <string name="comments">Comments</string>
+    <string name="error_title">Oooops!</string>
+    <string name="error_body">Feel lost and unconnected, like you are on a deserted island? Follow the advice, keep calm, light a fire, and keep refreshing.</string>
+    <string name="error_button_text">Refresh</string>
 </resources>
