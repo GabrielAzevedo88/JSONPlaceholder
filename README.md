@@ -13,7 +13,7 @@ Simple app with JSONPlaceholder services
 # Dependency injection
 - Koin
 
-# Communication with the api
+# Communication with api
 - Retrofit + Coroutines
 
 # Unit testing
@@ -23,6 +23,7 @@ Simple app with JSONPlaceholder services
 
 # TODO List
 - [ ] User detail
+- [ ] User albums
 - [ ] Post cache whit Room
 - [ ] UI test whith Expresso
 - [ ] Improve the UI
