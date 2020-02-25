@@ -1,9 +1,10 @@
 package com.android.jsonplaceholder.di
 
-import com.android.jsonplaceholder.adapter.PostListAdapter
+import com.android.jsonplaceholder.adapters.PostListAdapter
 import com.android.jsonplaceholder.internal.AppRouter
 import com.android.jsonplaceholder.repository.JsonPlaceholderApi
 import com.android.jsonplaceholder.repository.JsonPlaceholderRepository
+import com.android.jsonplaceholder.viewmodel.PostDetailViewModel
 import com.android.jsonplaceholder.viewmodel.PostListViewModel
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.core.context.loadKoinModules
@@ -23,6 +24,7 @@ private val repositoryModule = module {
 
 private val viewModelModule = module {
     viewModel { PostListViewModel(repository = get()) }
+    viewModel { PostDetailViewModel(repository = get()) }
 }
 
 private val adapterModule = module {

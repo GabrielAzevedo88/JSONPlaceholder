@@ -18,8 +18,8 @@ class JsonPlaceholderRepository(private val service: JsonPlaceholderService) :
         service.getPost(id)
     }
 
-    override suspend fun getUsers(): List<User> = apiRequest {
-        service.getUsers()
+    override suspend fun getUser(id: Int): User = apiRequest {
+        service.getUser(id)
     }
 
     override suspend fun getPostComments(postId: Int): List<Comment> = apiRequest {

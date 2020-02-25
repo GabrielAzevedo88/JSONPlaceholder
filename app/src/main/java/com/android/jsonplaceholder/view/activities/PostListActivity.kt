@@ -1,11 +1,11 @@
-package com.android.jsonplaceholder.view
+package com.android.jsonplaceholder.view.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.jsonplaceholder.BR
 import com.android.jsonplaceholder.R
-import com.android.jsonplaceholder.adapter.PostListAdapter
+import com.android.jsonplaceholder.adapters.PostListAdapter
 import com.android.jsonplaceholder.extensions.bindingContentView
 import com.android.jsonplaceholder.extensions.observe
 import com.android.jsonplaceholder.internal.AppRouter
