@@ -18,8 +18,8 @@ interface JsonPlaceholderService {
     @GET("posts/{id}")
     suspend fun getPost(@Path("id") id: Int): Response<Post>
 
-    @GET("users")
-    suspend fun getUsers(): Response<List<User>>
+    @GET("users/{id}")
+    suspend fun getUser(@Path("id") id: Int): Response<User>
 
     @GET("posts/{postId}/comments")
     suspend fun getPostComments(@Path("postId") postId: Int): Response<List<Comment>>

@@ -12,7 +12,7 @@ interface JsonPlaceholderDataContract {
 
     suspend fun getPost(id: Int): Post
 
-    suspend fun getUsers(): List<User>
+    suspend fun getUser(id: Int): User
 
     suspend fun getPostComments(postId: Int): List<Comment>
 

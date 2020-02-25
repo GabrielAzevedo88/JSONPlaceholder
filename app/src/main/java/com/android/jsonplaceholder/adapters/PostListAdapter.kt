@@ -1,4 +1,4 @@
-package com.android.jsonplaceholder.adapter
+package com.android.jsonplaceholder.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.android.jsonplaceholder.R
+import com.android.jsonplaceholder.holders.PostListViewHolder
 import com.android.jsonplaceholder.internal.AppRouter
 import com.android.jsonplaceholder.model.Post
 
@@ -28,7 +29,13 @@ class PostListAdapter(val router: AppRouter, private val removeItemAction: (Int)
     override fun onBindViewHolder(holder: PostListViewHolder, position: Int) {
         val post = postList[position]
 
-        holder.binding(post)
+        holder.apply {
+            binding(post)
+
+            itemView.setOnClickListener {
+                router.goToPostDetail(post.id)
+            }
+        }
     }
 
     override fun getItemCount(): Int = postList.count()

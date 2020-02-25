@@ -1,4 +1,4 @@
-package com.android.jsonplaceholder.adapter
+package com.android.jsonplaceholder.holders
 
 import android.view.View
 import androidx.databinding.ViewDataBinding

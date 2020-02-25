@@ -21,27 +21,28 @@ open class BaseViewModel : ViewModel() {
     } ?: View.GONE
 
     fun setState(state: State) {
-        when (state) {
-            State.SUCCESS -> {
-                contendVisibility.value = getVisibility(true)
-                mainLoaderVisibility.value = getVisibility(false)
-                deletingLoaderVisibility.value = getVisibility(false)
+        contendVisibility.value =
+            when (state) {
+                State.SUCCESS -> getVisibility(true)
+                State.ERROR, State.LOADING, State.DELETING, State.REFRESH_LOADING -> getVisibility(
+                    false
+                )
             }
-            State.ERROR -> {
-                contendVisibility.value = getVisibility(false)
-                mainLoaderVisibility.value = getVisibility(false)
-                deletingLoaderVisibility.value = getVisibility(false)
+
+        mainLoaderVisibility.value =
+            when (state) {
+                State.LOADING -> getVisibility(true)
+                State.SUCCESS, State.ERROR, State.DELETING, State.REFRESH_LOADING -> getVisibility(
+                    false
+                )
             }
-            State.LOADING -> {
-                contendVisibility.value = getVisibility(false)
-                mainLoaderVisibility.value = getVisibility(true)
-                deletingLoaderVisibility.value = getVisibility(false)
+
+        deletingLoaderVisibility.value =
+            when (state) {
+                State.DELETING -> getVisibility(true)
+                State.SUCCESS, State.ERROR, State.LOADING, State.REFRESH_LOADING -> getVisibility(
+                    false
+                )
             }
-            State.DELETING -> {
-                contendVisibility.value = getVisibility(false)
-                mainLoaderVisibility.value = getVisibility(false)
-                deletingLoaderVisibility.value = getVisibility(true)
-            }
-        }
     }
 }
