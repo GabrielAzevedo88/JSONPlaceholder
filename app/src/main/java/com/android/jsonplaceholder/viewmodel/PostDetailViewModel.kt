@@ -1,5 +1,6 @@
 package com.android.jsonplaceholder.viewmodel
 
+import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.android.jsonplaceholder.internal.State
@@ -14,8 +15,24 @@ class PostDetailViewModel(val repository: JsonPlaceholderRepository, val postId:
     val user: MutableLiveData<User> = MutableLiveData()
     val comments: MutableLiveData<List<Comment>> = MutableLiveData()
 
+    val noCommentsVisibility = MutableLiveData<Int>().apply {
+        value = View.GONE
+    }
+
+    private fun clearEmptyWarning() {
+        noCommentsVisibility.value = getVisibility(false)
+    }
+
+    fun validateComments() {
+        comments.value?.takeIf { it.isEmpty() }?.run {
+            noCommentsVisibility.value = getVisibility(true)
+        }
+    }
+
     fun getData() {
         setState(State.LOADING)
+
+        clearEmptyWarning()
 
         viewModelScope.launch {
             try {
@@ -24,6 +41,7 @@ class PostDetailViewModel(val repository: JsonPlaceholderRepository, val postId:
                     post.value = getPost(postId)
                     user.value = getUser(post.value?.userId ?: 0)
                     comments.value = getPostComments(postId)
+                    validateComments()
 
                     setState(State.SUCCESS)
                 }

@@ -19,7 +19,7 @@ open class BaseViewModel : ViewModel() {
         value = View.GONE
     }
 
-    private fun getVisibility(show: Boolean): Int = takeIf { show }?.run {
+    fun getVisibility(show: Boolean): Int = takeIf { show }?.run {
         View.VISIBLE
     } ?: View.GONE
 
