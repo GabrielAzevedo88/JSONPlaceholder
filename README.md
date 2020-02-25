@@ -23,6 +23,7 @@ Simple app with JSONPlaceholder services
 
 # TODO List
 - [ ] User detail
+- [ ] User albums
 - [ ] Post cache whit Room
 - [ ] UI test whith Expresso
 - [ ] Improve the UI
