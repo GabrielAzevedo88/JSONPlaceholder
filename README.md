@@ -13,7 +13,7 @@ Simple app with JSONPlaceholder services
 # Dependency injection
 - Koin
 
-# Communication with the api
+# Communication with api
 - Retrofit + Coroutines
 
 # Unit testing
