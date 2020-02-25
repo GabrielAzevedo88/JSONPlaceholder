@@ -9,12 +9,12 @@ import com.android.jsonplaceholder.model.User
 import com.android.jsonplaceholder.repository.JsonPlaceholderRepository
 import kotlinx.coroutines.launch
 
-class PostDetailViewModel(val repository: JsonPlaceholderRepository) : BaseViewModel() {
+class PostDetailViewModel(val repository: JsonPlaceholderRepository, val postId: Int) : BaseViewModel() {
     val post: MutableLiveData<Post> = MutableLiveData()
     val user: MutableLiveData<User> = MutableLiveData()
     val comments: MutableLiveData<List<Comment>> = MutableLiveData()
 
-    fun getData(postId: Int) {
+    fun getData() {
         setState(State.LOADING)
 
         viewModelScope.launch {

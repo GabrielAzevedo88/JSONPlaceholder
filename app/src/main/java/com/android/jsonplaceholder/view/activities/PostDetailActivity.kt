@@ -14,14 +14,14 @@ import com.android.jsonplaceholder.viewmodel.PostDetailViewModel
 import kotlinx.android.synthetic.main.activity_post_detail.*
 import kotlinx.android.synthetic.main.content_post_detail_header.*
 import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class PostDetailActivity : AppCompatActivity() {
 
-    private val viewModel: PostDetailViewModel by viewModel()
-    private val commentListAdapter = CommentListAdapter()
-    private val postId: Int by lazy {
-        intent.getIntExtra(EXTRA_POST_ID, 0)
+    private val viewModel: PostDetailViewModel by viewModel {
+        parametersOf(intent.getIntExtra(EXTRA_POST_ID, 0))
     }
+    private val commentListAdapter = CommentListAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,6 +67,6 @@ class PostDetailActivity : AppCompatActivity() {
     }
 
     private fun getData() {
-        viewModel.getData(postId)
+        viewModel.getData()
     }
 }

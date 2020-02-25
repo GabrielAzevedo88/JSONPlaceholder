@@ -24,7 +24,7 @@ private val repositoryModule = module {
 
 private val viewModelModule = module {
     viewModel { PostListViewModel(repository = get()) }
-    viewModel { PostDetailViewModel(repository = get()) }
+    viewModel { (postId: Int) -> PostDetailViewModel(repository = get(), postId = postId) }
 }
 
 private val adapterModule = module {
