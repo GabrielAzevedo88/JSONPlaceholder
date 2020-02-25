@@ -11,11 +11,10 @@ class CommentTest {
     )
 
     @Test
-    fun `quando desejo o titulo do comentário então deve retornar o valor formatado`() {
+    fun `when I want the title of the comment then it must return the formatted value`() {
         val nameMock = "Xablau History"
         val emailMock = "xablau@gmail.com"
 
         Assert.assertEquals("$nameMock ($emailMock)", commentMock.getTitle())
     }
-
 }

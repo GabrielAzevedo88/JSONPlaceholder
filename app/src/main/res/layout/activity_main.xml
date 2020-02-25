@@ -53,8 +53,9 @@
                 android:id="@+id/aPostList_rvPostList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingStart="24dp"
-                android:paddingEnd="24dp"
+                android:paddingStart="8dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="8dp"
                 android:visibility="@{viewModel.contendVisibility.intValue()}"
                 tools:listitem="@layout/layout_post_list_item" />
 
@@ -95,6 +96,20 @@
             app:layout_constraintTop_toTopOf="parent"
             app:onRefreshClick="@{() -> viewModel.getData(false)}"
             tools:visibility="gone" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"
+            android:text="@string/no_post_found"
+            android:visibility="@{viewModel.noPostFoundVisibility.intValue()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="gone"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
