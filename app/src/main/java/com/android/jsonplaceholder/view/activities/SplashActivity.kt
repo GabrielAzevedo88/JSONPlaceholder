@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import com.android.jsonplaceholder.R
-import com.android.jsonplaceholder.extensions.bindingContentView
 import com.android.jsonplaceholder.extensions.fadeTransition
 import com.android.jsonplaceholder.internal.AppRouter
 
@@ -19,22 +18,17 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setupBinding()
+        setContentView(R.layout.activity_splash)
         setupRunning()
     }
 
-    private fun setupBinding() {
-        bindingContentView(R.layout.activity_splash).run {
-            lifecycleOwner = this@SplashActivity
-        }
-    }
-
     private fun setupRunning() {
-        Handler().postDelayed({
-            router.goToPostList()
-            finish()
+        Handler()
+            .postDelayed({
+                router.goToPostList()
+                finish()
 
-            fadeTransition()
-        }, SPLASH_TIME)
+                fadeTransition()
+            }, SPLASH_TIME)
     }
 }

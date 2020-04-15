@@ -1,6 +1,7 @@
 package com.android.jsonplaceholder.viewmodel
 
 import android.view.View
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.android.jsonplaceholder.internal.State
@@ -10,22 +11,31 @@ import com.android.jsonplaceholder.model.User
 import com.android.jsonplaceholder.repository.JsonPlaceholderRepository
 import kotlinx.coroutines.launch
 
-class PostDetailViewModel(val repository: JsonPlaceholderRepository, val postId: Int) : BaseViewModel() {
-    val post: MutableLiveData<Post> = MutableLiveData()
-    val user: MutableLiveData<User> = MutableLiveData()
-    val comments: MutableLiveData<List<Comment>> = MutableLiveData()
-
-    val noCommentsVisibility = MutableLiveData<Int>().apply {
+class PostDetailViewModel(val repository: JsonPlaceholderRepository, val postId: Int) :
+    BaseViewModel() {
+    private val _post: MutableLiveData<Post> = MutableLiveData()
+    private val _user: MutableLiveData<User> = MutableLiveData()
+    private val _comments: MutableLiveData<List<Comment>> = MutableLiveData()
+    private val _noCommentsVisibility = MutableLiveData<Int>().apply {
         value = View.GONE
     }
 
+    val post: LiveData<Post>
+        get() = _post
+    val user: LiveData<User>
+        get() = _user
+    val comments: LiveData<List<Comment>>
+        get() = _comments
+    val noCommentsVisibility: LiveData<Int>
+        get() = _noCommentsVisibility
+
     private fun clearEmptyWarning() {
-        noCommentsVisibility.value = getVisibility(false)
+        _noCommentsVisibility.value = getVisibility(false)
     }
 
     fun validateComments() {
-        comments.value?.takeIf { it.isEmpty() }?.run {
-            noCommentsVisibility.value = getVisibility(true)
+        _comments.value?.takeIf { it.isEmpty() }?.run {
+            _noCommentsVisibility.value = getVisibility(true)
         }
     }
 
@@ -38,9 +48,9 @@ class PostDetailViewModel(val repository: JsonPlaceholderRepository, val postId:
             try {
 
                 repository.run {
-                    post.value = getPost(postId)
-                    user.value = getUser(post.value?.userId ?: 0)
-                    comments.value = getPostComments(postId)
+                    _post.value = getPost(postId)
+                    _user.value = getUser(post.value?.userId ?: 0)
+                    _comments.value = getPostComments(postId)
                     validateComments()
 
                     setState(State.SUCCESS)

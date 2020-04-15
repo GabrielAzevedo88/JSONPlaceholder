@@ -2,6 +2,7 @@ package com.android.jsonplaceholder.viewmodel
 
 import android.util.Log
 import android.view.View
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.android.jsonplaceholder.internal.AppConstant.Companion.TAG_ERROR
@@ -12,20 +13,28 @@ import kotlinx.coroutines.launch
 
 class PostListViewModel(val repository: JsonPlaceholderRepository) : BaseViewModel() {
 
-    val postList: MutableLiveData<List<Post>> = MutableLiveData()
-    val successDeletedId: MutableLiveData<Int> = MutableLiveData()
-
-    val noPostFoundVisibility = MutableLiveData<Int>().apply {
+    private val _postList: MutableLiveData<List<Post>> = MutableLiveData()
+    private val _successDeletedId: MutableLiveData<Int> = MutableLiveData()
+    private val _noPostFoundVisibility = MutableLiveData<Int>().apply {
         value = View.GONE
     }
 
+    val postList: LiveData<List<Post>>
+        get() = _postList
+
+    val successDeletedId: LiveData<Int>
+        get() = _successDeletedId
+
+    val noPostFoundVisibility: LiveData<Int>
+        get() = _noPostFoundVisibility
+
     private fun clearEmptyWarning() {
-        noPostFoundVisibility.value = getVisibility(false)
+        _noPostFoundVisibility.value = getVisibility(false)
     }
 
     fun validateData() {
         postList.value?.takeIf { it.isEmpty() }?.run {
-            noPostFoundVisibility.value = getVisibility(true)
+            _noPostFoundVisibility.value = getVisibility(true)
         }
     }
 
@@ -38,7 +47,7 @@ class PostListViewModel(val repository: JsonPlaceholderRepository) : BaseViewMod
 
         viewModelScope.launch {
             try {
-                postList.value = repository.getPosts()
+                _postList.value = repository.getPosts()
                 validateData()
 
                 setState(State.SUCCESS)
@@ -49,7 +58,7 @@ class PostListViewModel(val repository: JsonPlaceholderRepository) : BaseViewMod
         }
     }
 
-    /** ATTENTION: Fake method. Always return 520 **/
+    /** ATTENTION: Fake method. Always returns 520 **/
     fun deletePost(id: Int) {
         setState(State.DELETING)
         viewModelScope.launch {
@@ -58,7 +67,7 @@ class PostListViewModel(val repository: JsonPlaceholderRepository) : BaseViewMod
             } catch (ex: Exception) {
                 Log.e(TAG_ERROR, ex.message.orEmpty())
             } finally {
-                successDeletedId.value = id
+                _successDeletedId.value = id
                 setState(State.SUCCESS)
             }
         }
